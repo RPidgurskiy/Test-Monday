@@ -1,0 +1,130 @@
+const board_id = 3934194107;
+const key = 'eyJhbGciOiJIUzI1NiJ9.eyJ0aWQiOjIzODQ5NTg4MiwidWlkIjozOTk3MDEzNiwiaWFkIjoiMjAyMy0wMi0yMFQxMzozMTo1OC42NTZaIiwicGVyIjoibWU6d3JpdGUiLCJhY3RpZCI6MTU0Njg1OTcsInJnbiI6ImV1YzEifQ.i3C3vm3seXMJenFzLYpd7lE4wY142mVqsRzsd8JUC00';
+const key1 = 'eyJhbGciOiJIUzI1NiJ9.eyJ0aWQiOjIzNjE2NzQ4MCwidWlkIjozODY2OTA2NCwiaWFkIjoiMjAyMy0wMi0xMFQxMjoxNjowOS43NzRaIiwicGVyIjoibWU6d3JpdGUiLCJhY3RpZCI6MTA1OTI2MTUsInJnbiI6InVzZTEifQ.oNz6k1Glu1YMbLwRHwYnVsQiOBcsMgzTWDwDJJgkSLY';
+
+document.addEventListener("DOMContentLoaded", async () => {
+    const date = document.querySelector('#date');
+
+    const name = document.querySelector('.js-name'),
+        email = document.querySelector('.js-email'),
+        address = document.querySelector('.js-address'),
+        area = document.querySelector('.js-area'),
+        language = document.querySelector('.js-language'),
+        phone = document.querySelector("#phone"),
+        payment = document.querySelector(".js-payment"),
+        tariff = document.querySelector(".js-tariff"),
+        comment = document.querySelector(".js-comment"),
+        file = document.querySelector(".js-file"),
+        forms = document.querySelectorAll('.needs-validation')
+
+    let query = `{boards { name id description items { name id column_values{title id type text } } } }`;
+    let query3 = `mutation ($myItemName: String!, $columnVals: JSON!) { create_item (board_id:${board_id}, item_name:$myItemName, column_values:$columnVals) { id } }`;
+
+    const day = new Date();
+    day.setDate(day.getDate() - 1);
+    const picker = new Litepicker({
+        element: document.getElementById('lite'),
+        elementEnd: document.getElementById('liteEnd'),
+        minDays: 7,
+        allowRepick: true,
+        singleMode: false,
+        minDate: day,
+        numberOfColumns: 2,
+        numberOfMonths: 2,
+    });
+
+    const startElem = document.getElementById('lite');
+    const endElem = document.getElementById('liteEnd');
+
+    startElem.addEventListener('changeDate', function (e) {
+        const valueDate = e.target.value.replace(/(\d\d)\/(\d\d)\/(\d{4})/, "$3-$1-$2")
+        return valueDate
+    });
+    endElem.addEventListener('changeDate', function (e) {
+        const valueDateEnd = e.target.value.replace(/(\d\d)\/(\d\d)\/(\d{4})/, "$3-$1-$2")
+        return valueDateEnd
+    });
+    phone.addEventListener('input', (e) => {
+        phone.replace(/\D+/g, '');
+    })
+    intlTelInput(phone, {
+        customPlaceholder: function (selectedCountryPlaceholder, selectedCountryData) {
+            return `${selectedCountryPlaceholder}`;
+        },
+        separateDialCode: true,
+        autoPlaceholder: "aggressive",
+        formatOnDisplay: true,
+        placeholderNumberType: "MOBILE",
+    });
+    await fetch("https://api.monday.com/v2", {
+        method: 'post',
+        headers: {
+            'Content-Type': "application/json",
+            'Authorization': key1
+        },
+        body: JSON.stringify({
+            "query": query,
+        })
+    })
+    const sendData = async () => {
+        const values = {
+            "myItemName": "Task",
+            "columnVals": JSON.stringify({
+                "text": `${name.value}`,
+                "dup__of_name": `${address.value}`,
+                "email0": email.value,
+                "phone": `${phone.value}`,
+                "dropdown": `${area.value}`,
+                "dropdown0": `${language.value}`,
+                "dup__of_language": `${tariff.value}`,
+                "dup__of_tariff": `${payment.value}`,
+                "text9": `${comment.value}`,
+                "timerange0": {
+                    "from": startElem.value.replace(/(\d\d)\/(\d\d)\/(\d{4})/, "$3-$1-$2"),
+                    "to": endElem.value.replace(/(\d\d)\/(\d\d)\/(\d{4})/, "$3-$1-$2")
+                }
+            })
+        };
+        await fetch("https://api.monday.com/v2", {
+            method: 'post',
+            headers: {
+                'Content-Type': "application/json",
+                'Authorization': key
+            },
+            body: JSON.stringify({
+                "query": query3,
+                'variables': JSON.stringify(values),
+            })
+        }).then(res => res.json())
+            .then(data => {
+                if (data) {
+                    const formData = new FormData();
+                    formData.append('query', 'mutation ($file: File!) { add_file_to_column (item_id: ' + data.data.create_item.id + ', column_id: "files", file: $file) { id } }');
+                    formData.append('variables[file]', file.files[0]);
+                    fetch('https://api.monday.com/v2/', {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': key
+                        },
+                        body: formData
+                    })
+                        .then(response => response.json())
+                        .then(data => console.log(data))
+                        .catch(error => console.error(error))
+                }
+            })
+    }
+    Array.prototype.slice.call(forms)
+        .forEach(function (form) {
+            form.addEventListener('submit', async (event) => {
+                if (!form.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                } else {
+                    event.preventDefault();
+                    sendData()
+                }
+                form.classList.add('was-validated')
+            }, false)
+        })
+})

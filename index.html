@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="index.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/css/intlTelInput.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/intlTelInput.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/litepicker.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/litepicker/dist/css/litepicker.css"/>
+
+</head>
+<body>
+<div class="wrapper">
+    <form class="row g-3 needs-validation" novalidate>
+        <h1>Eco-taxi by Parki ar minda</h1>
+        <p>შეავსეთ ეს ფორმა თუ გნებავთ ეკო-ტაქსის შეკვეთა / Please, fill this form if you want to order eco-taxi</p>
+        <div class="col-12 mb-1">
+            <span>Date /  თარიღი</span>
+            <label class="helper form-label">(The range size must be limited to 7 days minimum.)</label>
+            <div class="date-picker">
+                <input class="form-control" id="lite" autocomplete="off" type="text" name="start"
+                       placeholder="Start Date" required>
+                <input class="form-control" autocomplete="off" type="text" name="end" id="liteEnd" placeholder="End Date"
+                       required>
+            </div>
+        </div>
+        <div class="col-12 mb-1">
+            <label for="validationCustom01" class="form-label">Please write your name & surname / გთხოვთ დაწეროთ თქვენი
+                სახელი და გვარი</label>
+            <input id="validationCustom01" type="text" class="form-control js-name" required>
+        </div>
+        <div class="col-12 mb-1">
+            <label for="validationCustom02" class="form-label">Please write your address/ გთხოვთ დაწეროთ თქვენი
+                მისამართი</label>
+            <div class="input-group has-validation">
+                <input id="validationCustom02" type="text" class="form-control js-address" required>
+            </div>
+        </div>
+        <div class="col-12 mb-1">
+            <label for="validationCustom03" class="form-label">Please choose your area / გთხოვთ, აირჩიოთ თქვენი
+                ტერიტორია</label>
+            <div class="col-4">
+                <select id="validationCustom03" class="form-select js-area" required>
+                    <option selected disabled value="">Choose...</option>
+                    <option value="1">Avlabari</option>
+                    <option value="2">Baghebi</option>
+                    <option value="3">Chughureti</option>
+                    <option value="4">Didi Dighomi</option>
+                    <option value="5">Didube</option>
+                    <option value="6">Dighomi Massive</option>
+                    <option value="7">Garetubani</option>
+                    <option value="8">Gldani</option>
+                    <option value="9">Isani</option>
+                    <option value="10">Kharpukhi</option>
+                    <option value="11">Kiketi</option>
+                    <option value="12">Kojori</option>
+                    <option value="13">Krtsanisi</option>
+                    <option value="14">Lisi</option>
+                    <option value="15">Mtatsminda</option>
+                    <option value="16">Mukhiani</option>
+                    <option value="17">Nadzaladevi</option>
+                    <option value="18">Okrokana</option>
+                    <option value="19">Old Town (Kala)</option>
+                    <option value="20">Ortachala</option>
+                    <option value="21">Saburtalo</option>
+                    <option value="22">Samgori</option>
+                    <option value="23">Shindisi and alike</option>
+                    <option value="24">Sololaki</option>
+                    <option value="25">Tskneti</option>
+                    <option value="26">Vake</option>
+                    <option value="27">Varketili</option>
+                    <option value="28">Vashlisdzhvari</option>
+                    <option value="29">Vazisubani</option>
+                    <option value="30">Vera</option>
+                    <option value="31">Village Dighomi</option>
+                    <option value="32">Zghvis ubani</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-12 mb-1">
+            <label for="phone" class="form-label">Please leave your phone number / გთხოვთ დატოვოთ თქვენი ტელეფონის
+                ნომერი</label>
+            <input class="form-control" id="phone" type="text" required>
+        </div>
+        <div class="col-12 mb-1">
+            <label for="validationCustom05" class="form-label">Please choose your preferable language / აირჩიეთ
+                თქვენთვის სასურველი ენა (order to be changed)</label>
+            <div class="col-4">
+                <select id="validationCustom05" class="form-select js-language" aria-label="Default select example"
+                        required>
+                    <option selected disabled value="">Choose...</option>
+                    <option value="1">English</option>
+                    <option value="2">Russian</option>
+                    <option value="3">Georgian</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-12 mb-1">
+            <label for="validationCustom06" class="form-label">Please choose your tariff / აირჩიეთ თქვენი ტარიფი</label>
+            <label>New Pricing for Eco-Taxi services / ეკო-ტაქსის სერვისების ახალი ფასები (link needed)</label>
+            <div class="col-4">
+                <select id="validationCustom06" class="form-select js-tariff" aria-label="Default select example"
+                        required>
+                    <option selected disabled value="">Choose...</option>
+                    <option value="1">20 GEL - Basic tariff in central areas of Tbilisi</option>
+                    <option value="2">25 GEL - Basic tariff in more remote areas of Tbilisi</option>
+                    <option value="3">30 GEL - Basic tariff ( pick up out of town)</option>
+                    <option value="4">30 GEL - Prices for corporate clients will be developed separately</option>
+                    <option value="5">40 GEL - Tariff with additional sorting in central areas of Tbilisi</option>
+                    <option value="6">50 GEL - Tariff with additional sorting in remote areas of Tbilisi</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-12 mb-1">
+            <label for="validationCustom07" class="form-label">Please choose your payment method / აირჩიეთ გადახდის
+                მეთოდი</label>
+            <div class="col-4">
+                <select id="validationCustom07" class="form-select js-payment" aria-label="Default select example"
+                        required>
+                    <option selected disabled value="">Choose...</option>
+                    <option value="1">Cash</option>
+                    <option value="2">Transfer</option>
+                    <option value="3">Invoice</option>
+                    <option value="4">Online payment</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-12 mb-1">
+            <label for="validationCustom08" class="form-label">Please write your email / გთხოვთ დაწეროთ თქვენი
+                ელ.ფოსტა</label>
+            <input id="validationCustom08" type="email" class="form-control js-email" required>
+        </div>
+        <div class="col-12 mb-1">
+            <div class="mb-3">
+                <label for="validationCustom09" class="form-label">Additional comments / დამატებითი კომენტარი</label>
+                <textarea id="validationCustom09" class="form-control js-comment" rows="3"></textarea>
+            </div>
+        </div>
+        <div class="col-12 mb-3">
+            <label for="validationCustom10" class="form-label" for="customFile">Files</label>
+            <input id="validationCustom10" type="file" class="form-control js-file" id="customFile" required/>
+        </div>
+        <div class="col-12 text-center">
+            <button class="btn btn-primary js-btn">Submit</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

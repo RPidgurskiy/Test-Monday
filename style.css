@@ -1,0 +1,28 @@
+body {
+    background-image: url("https://res.cloudinary.com/monday-platform-eu/image/upload/v1675770953/board_views_images/logos/1675770952298_08037742-d09f-b97d-1163-6393b5fa10e8.jpg");
+     background-size: cover;
+      height: 100%;
+}
+.wrapper {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 40px;
+    background: rgb(255, 255, 255);
+    border-radius: 10px;
+}
+form {
+    padding: 40px;
+}
+.date-picker {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+}
+.button {
+    border: none;
+}
+
+.form-label:after {
+    content:"*";
+    color:red;
+}
