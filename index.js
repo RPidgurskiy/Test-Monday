@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             method: 'post',
             headers: {
                 'Content-Type': "application/json",
-                'Authorization': key
+                'Authorization': key1
             },
             body: JSON.stringify({
                 "query": query3,
@@ -104,7 +104,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     fetch('https://api.monday.com/v2/', {
                         method: 'POST',
                         headers: {
-                            'Authorization': key
+                            'Authorization': key1
                         },
                         body: formData
                     })
