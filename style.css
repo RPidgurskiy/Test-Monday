@@ -22,7 +22,16 @@ form {
     border: none;
 }
 
-.form-label:after {
+.form-label.required:after {
     content:"*";
     color:red;
+}
+
+.valid-status {
+    display: none;
+    color: rgb(62 165 62 / 82%);
+}
+
+.valid-status.is-active {
+    display: block;
 }
