@@ -188,16 +188,16 @@ document.addEventListener("DOMContentLoaded", async () => {
                     event.stopPropagation()
                 } else {
                     event.preventDefault();
-                    if (date1[0].value) {
+                    if (date1[0].checked) {
                         await sendData(date1[0].value)
                     }
-                    if (date2[0].value) {
+                    if (date2[0].checked) {
                         await sendData(date2[0].value)
                     }
-                    if (date3[0].value) {
+                    if (date3[0].checked) {
                         await sendData(date3[0].value)
                     }
-                    if (date4[0].value) {
+                    if (date4[0].checked) {
                         await sendData(date4[0].value)
                     }
                     validStatus.classList.add('is-active');
