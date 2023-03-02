@@ -210,7 +210,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     }
                     validStatus.classList.add('is-active');
                     form.classList.remove('was-validated')
-                    popup.classList.add('visible')
+                    popup.classList.add('is-visible')
                     form.reset()
                 }
             }, false)
