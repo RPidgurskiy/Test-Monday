@@ -23,7 +23,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         date2 = document.querySelectorAll('.js-checkbox-2'),
         date3 = document.querySelectorAll('.js-checkbox-3'),
         date4 = document.querySelectorAll('.js-checkbox-4'),
-        forms = document.querySelectorAll('.needs-validation')
+        forms = document.querySelectorAll('.needs-validation'),
+        popup = document.querySelector('.js-modal'),
+        reload = document.querySelector('.js-reload');
 
     let query = `{boards { name id description items { name id column_values{title id type text } } } }`;
     let query3 = `mutation ($myItemName: String!, $columnVals: JSON!) { create_item (board_id:${board_id}, item_name:$myItemName, column_values:$columnVals) { id } }`;
@@ -134,6 +136,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     //         "query": query,
     //     })
     // })
+    reload.addEventListener('click', () => {
+        window.location.reload();
+    })
     const sendData = async (date) => {
         const values = {
             "myItemName": "Task",
@@ -161,22 +166,24 @@ document.addEventListener("DOMContentLoaded", async () => {
                 "query": query3,
                 'variables': JSON.stringify(values),
             })
-        }).then(res => res.json())
+        }).then(res => (res.json()))
             .then(data => {
                 if (data) {
                     const formData = new FormData();
                     formData.append('query', 'mutation ($file: File!) { add_file_to_column (item_id: ' + data.data.create_item.id + ', column_id: "files", file: $file) { id } }');
                     formData.append('variables[file]', file.files[0]);
-                    fetch('https://api.monday.com/v2/', {
-                        method: 'POST',
-                        headers: {
-                            'Authorization': key1
-                        },
-                        body: formData
-                    })
-                        .then(response => response.json())
-                        .then(data => console.log(data))
-                        .catch(error => console.error(error))
+                    if (file.files[0]) {
+                        fetch('https://api.monday.com/v2/', {
+                            method: 'POST',
+                            headers: {
+                                'Authorization': key1
+                            },
+                            body: formData
+                        })
+                            .then(response => response.json())
+                            .then(data => console.log(data))
+                            .catch(error => console.error(error))
+                    }
                 }
             })
     }
@@ -186,6 +193,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                 if (!form.checkValidity()) {
                     event.preventDefault()
                     event.stopPropagation()
+                    form.classList.add('was-validated')
+                    popup.classList.add('is-visible')
                 } else {
                     event.preventDefault();
                     if (date1[0].checked) {
@@ -202,9 +211,9 @@ document.addEventListener("DOMContentLoaded", async () => {
                     }
                     validStatus.classList.add('is-active');
                     form.classList.remove('was-validated')
+                    popup.classList.add('visible')
                     form.reset()
                 }
-                form.classList.add('was-validated')
             }, false)
         })
 })
