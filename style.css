@@ -35,3 +35,10 @@ form {
 .valid-status.is-active {
     display: block;
 }
+
+.is-visible {
+    display: block !important;
+    opacity: 1;
+    box-shadow: 0 5px 15px rgba(0,0,0,0) !important;
+    backdrop-filter: blur(25px);
+}
