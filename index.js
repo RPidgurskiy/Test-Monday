@@ -194,7 +194,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                     event.preventDefault()
                     event.stopPropagation()
                     form.classList.add('was-validated')
-                    popup.classList.add('is-visible')
                 } else {
                     event.preventDefault();
                     if (date1[0].checked) {
