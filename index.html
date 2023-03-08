@@ -22,11 +22,11 @@
 </head>
 <body>
 <div class="wrapper">
-    <form class="row g-3 needs-validation" novalidate>
+    <form class="row g-2 needs-validation" novalidate>
         <h1>Eco-taxi by Parki ar minda</h1>
         <p>შეავსეთ ეს ფორმა თუ გნებავთ ეკო-ტაქსის შეკვეთა / Please, fill this form if you want to order eco-taxi</p>
         <div class="col-12 mb-1">
-            <label class="form-label required">Date /  თარიღი სახელი და გვარი</label>
+            <label class="form-label required">Date / თარიღი</label>
             <div class="form-check">
                 <input class="form-check-input js-checkbox-1" type="checkbox" value="" id="flexCheckDefault1">
                 <label class="form-check-label js-checkbox-1" for="flexCheckDefault1"></label>
@@ -59,7 +59,7 @@
         <div class="col-12 mb-1">
             <label for="validationCustom03" class="form-label required">Please choose your area / გთხოვთ, აირჩიოთ თქვენი
                 ტერიტორია</label>
-            <div class="col-4">
+            <div class="col-xl-4 col-sm-12">
                 <select id="validationCustom03" class="form-select js-area" required>
                     <option selected disabled value="">Choose...</option>
                     <option value="Avchala">Avchala</option>
@@ -106,9 +106,8 @@
             <input class="form-control" id="phone" type="text" required>
         </div>
         <div class="col-12 mb-1">
-            <label for="validationCustom05" class="form-label required">Please choose your preferable language / აირჩიეთ
-                თქვენთვის სასურველი ენა (order to be changed)</label>
-            <div class="col-4">
+            <label for="validationCustom05" class="form-label required">Please choose your preferable language / აირჩიეთ თქვენთვის სასურველი ენა </label>
+            <div class="col-xl-4 col-sm-12">
                 <select id="validationCustom05" class="form-select js-language" aria-label="Default select example"
                         required>
                     <option selected disabled value="">Choose...</option>
@@ -120,7 +119,7 @@
         </div>
         <div class="col-12 mb-1">
             <label for="validationCustom06" class="form-label required">Please choose your tariff / აირჩიეთ თქვენი ტარიფი</label>
-            <div class="col-4">
+            <div class="col-xl-4 col-sm-12">
                 <select id="validationCustom06" class="form-select js-tariff" aria-label="Default select example"
                         required>
                     <option selected disabled value="">Choose...</option>
@@ -138,13 +137,13 @@
         <div class="col-12 mb-1">
             <label for="validationCustom07" class="form-label required">Please choose your payment method / აირჩიეთ გადახდის
                 მეთოდი</label>
-            <div class="col-4">
+            <div class="col-4 col-sm-12">
                 <select id="validationCustom07" class="form-select js-payment" aria-label="Default select example"
                         required>
                     <option selected disabled value="">Choose...</option>
-                    <option value="1">Cash</option>
-                    <option value="2">Transfer</option>
-                    <option value="3">Invoice</option>
+                    <option value="1">Cash / ნაღდი გადახდა</option>
+                    <option value="2">Transfer to account / გადარიცხვა ანგარიშზ</option>
+                    <option value="3">Invoice / ინვოისი</option>
                 </select>
             </div>
         </div>
@@ -176,10 +175,11 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-body text-center">
-                    Was successfully sent
+                    Thank you for filling the form! You will receive confirmation of your order to your email shortly.
+                    <div>გმადლობთ ფორმის შევსებისთვის! მალე მიიღებთ შეკვეთის დადასტურებას წერილს ელფოსტაზე.</div>
                 </div>
                 <div class="modal-footer text-center">
-                    <button type="button" class="btn btn-primary btn-sm js-reload">Add new +</button>
+                    <button type="button" class="btn btn-primary btn-sm js-reload">to home page</button>
                 </div>
             </div>
         </div>
