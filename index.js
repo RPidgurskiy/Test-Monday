@@ -30,19 +30,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     let query = `{boards { name id description items { name id column_values{title id type text } } } }`;
     let query3 = `mutation ($myItemName: String!, $columnVals: JSON!) { create_item (board_id:${board_id}, item_name:$myItemName, column_values:$columnVals) { id } }`;
 
-    // const day = new Date();
-    // day.setDate(day.getDate() - 1);
-    // const picker = new Litepicker({
-    //     element: document.getElementById('lite'),
-    //     elementEnd: document.getElementById('liteEnd'),
-    //     minDays: 7,
-    //     allowRepick: true,
-    //     singleMode: false,
-    //     minDate: day,
-    //     numberOfColumns: 2,
-    //     numberOfMonths: 2,
-    // });
-
+  
     const week1 = moment();
     const week2 = moment();
     const week3 = moment();
@@ -137,7 +125,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     //     })
     // })
     reload.addEventListener('click', () => {
-        window.location.reload();
+        window.location = 'https://eco-taxi.ge/'
     })
     const sendData = async (date) => {
         const values = {
