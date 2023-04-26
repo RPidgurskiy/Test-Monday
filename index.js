@@ -26,7 +26,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         popup = document.querySelector('.js-modal'),
         reload = document.querySelector('.js-reload');
 
-    // let query = `query { boards (ids: 3934194107) { columns { id title }}}`;
     let query3 = `mutation ($myItemName: String!, $columnVals: JSON!) { create_item (board_id:${board_id}, item_name:$myItemName, column_values:$columnVals) { id } }`;
 
     const tbilisiBounds = new google.maps.LatLngBounds(
@@ -135,7 +134,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 "text9": `${comment.value}`,
                 "text3": `${quantity.value}`,
                 "text0": date,
-                "location": link,
+                "location0": link,
             })
         };
         await fetch("https://api.monday.com/v2", {
