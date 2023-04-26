@@ -18,6 +18,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/litepicker.js"></script>
     <script src="https://unpkg.com/moment@2.29.1/moment.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAKRwIP6rbw_sJwgQj1vGqoTSBgAY1Az0A"></script>
 
 </head>
 <body>
@@ -56,6 +57,9 @@
                 <input id="validationCustom02" type="text" class="form-control js-address" required>
             </div>
         </div>
+        <div class="col-12 mb-3">
+            <div id="googleMap" class="google-map"></div>
+        </div>
         <div class="col-12 mb-1">
             <label for="validationCustom03" class="form-label required">Please choose your area / გთხოვთ, აირჩიოთ თქვენი
                 ტერიტორია</label>
@@ -65,7 +69,11 @@
                     <option value="Avchala">Avchala</option>
                     <option value="Avlabari">Avlabari</option>
                     <option value="Bagebi">Bagebi</option>
-                    <option value="Baghebi">Baghebi</option>
+                    <option value="Ivertubani">Ivertubani</option>
+                    <option value="Sanzona">Sanzona</option>
+                    <option value="Orkhevi">Orkhevi</option>
+                    <option value="Elia">Elia</option>
+                    <option value="Kukia">Kukia</option>
                     <option value="Chughureti">Chughureti</option>
                     <option value="Didi Dighomi">Didi Dighomi</option>
                     <option value="Didube">Didube</option>
@@ -125,12 +133,12 @@
                     <option selected disabled value="">Choose...</option>
                     <option value="20 GEL - Basic tariff in central areas of Tbilisi">20 GEL - Basic tariff in central areas of Tbilisi</option>
                     <option value="25 GEL - Basic tariff in more remote areas of Tbilisi">25 GEL - Basic tariff in more remote areas of Tbilisi</option>
-                    <option value="30 GEL - Basic tariff pick up  far from the center">30 GEL - Basic tariff pick up  far from the center</option>
+                    <option value="30 GEL - Basic tariff pick up Tbilisi suburbs">30 GEL - Basic tariff pick up Tbilisi suburb</option>
                     <option value="40 GEL - Tariff with additional sorting in central areas of Tbilisi">40 GEL - Tariff with additional sorting in central areas of Tbilisi</option>
                     <option value="50 GEL - Tariff with additional sorting in remote areas of Tbilisi">50 GEL - Tariff with additional sorting in remote areas of Tbilisi</option>
 
                     <option value="60 GEL - Tariff with additional sorting in Tbilisi suburbs">60 GEL - Tariff with additional sorting in Tbilisi suburbs</option>
-                    <option value="BUSINESS">BUSINESS</option>
+                    <option value="BUSINESS">BUSINESS TARIFF</option>
                 </select>
             </div>
         </div>
@@ -148,23 +156,31 @@
             </div>
         </div>
         <div class="col-12 mb-1">
-            <label for="quantity" class="form-label required">Please evaluate the amount of your waste (i.e. in Carrefour bags, in craft bags, in 60l bags, in 100l bags, etc.) / გთხოვთ აღრიცხოთ თქვენი ნარჩენების რაოდენობა (მაგალითად: კარფურის პარკებში, კრაფტის პარკებში, ტომრებში, 60 ლ პარკებში, 100 ლ პარკებში და ა.შ.)</label>
-            <input id="quantity" type="text" class="form-control js-quantity" required placeholder="quantity">
-        </div>
-        <div class="col-12 mb-1">
             <label for="validationCustom08" class="form-label required">Please write your email / გთხოვთ დაწეროთ თქვენი
                 ელ.ფოსტა</label>
             <input id="validationCustom08" type="email" class="form-control js-email" required>
         </div>
         <div class="col-12 mb-1">
             <div class="mb-3">
-                <label for="validationCustom09" class="form-label">Additional comments / დამატებითი კომენტარი</label>
+                <label for="validationCustom09" class="form-label">If you have any time restrictions please write them here / თუ გაქვთ რამე შეზღუდვები გთხოვთ მიუთითოს აქ.
+                </label>
                 <textarea id="validationCustom09" class="form-control js-comment" rows="3"></textarea>
             </div>
         </div>
         <div class="col-12 mb-3">
+            <label for="quantity" class="form-label required">Please evaluate the amount of your waste (i.e. in Carrefour bags, in craft bags, in 60l bags, in 100l bags, etc.) / გთხოვთ აღრიცხოთ თქვენი ნარჩენების რაოდენობა (მაგალითად: კარფურის პარკებში, კრაფტის პარკებში, ტომრებში, 60 ლ პარკებში, 100 ლ პარკებში და ა.შ.)</label>
+            <input id="quantity" type="text" class="form-control js-quantity" required placeholder="quantity">
+        </div>
+        <div class="col-12 mb-3">
             <label for="validationCustom10" class="form-label" for="customFile">You can attach a photo of your waste amount here / შეგიძლიათ მიაბათ თქვენი ნარჩენების რაოდენობის ამსახველი ფოტო აქ</label>
             <input id="validationCustom10" type="file" class="form-control js-file" id="customFile"/>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" required value="" id="flexCheckDefault">
+            <label class="form-check-label required" for="flexCheckDefault">
+                I’ve read the
+                <a target="_blank" href="https://eco-taxi.ge/plastic-bottle/">sorting guidelines</a>, understand and accept sorting rules for Eco-taxi. / გავეცანი, გავიაზრე და ვეთანხმენი <a target="_blank" href="https://eco-taxi.ge/plastic-bottle/">ეკო-ტაქსის დახარისხების</a> წესებს.
+            </label>
         </div>
         <div class="col-12 text-center">
             <div class="valid-status js-valid-status">Was successfully sent</div>
