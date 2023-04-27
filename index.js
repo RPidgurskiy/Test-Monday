@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     let query3 = `mutation ($myItemName: String!, $columnVals: JSON!) { create_item (board_id:${board_id}, item_name:$myItemName, column_values:$columnVals) { id } }`;
 
     const tbilisiBounds = new google.maps.LatLngBounds(
-        new google.maps.LatLng(41.628044, 44.659336),
+        new google.maps.LatLng(41.843689, 44.659336),
         new google.maps.LatLng(41.727981, 44.872459)
     );
     const map = new google.maps.Map(document.getElementById('googleMap'), {
@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     const dates = [];
 
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < 5; i++) {
         const date = moment(today).add(i * 7, 'days');
         const tuesdayDate = moment(date).day(tuesday).format('MMMM D');
         const thursdayDate = moment(date).day(thursday).format('D');
@@ -86,23 +86,23 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
     console.log(dates)
     date1.forEach(el => {
-        el.innerHTML = `${dates[0]}`
-        el.value = `${dates[0]}`
-    })
-
-    date2.forEach(el => {
         el.innerHTML = `${dates[1]}`
         el.value = `${dates[1]}`
     })
 
-    date3.forEach(el => {
+    date2.forEach(el => {
         el.innerHTML = `${dates[2]}`
         el.value = `${dates[2]}`
     })
 
-    date4.forEach(el => {
+    date3.forEach(el => {
         el.innerHTML = `${dates[3]}`
         el.value = `${dates[3]}`
+    })
+
+    date4.forEach(el => {
+        el.innerHTML = `${dates[4]}`
+        el.value = `${dates[4]}`
     })
 
     intlTelInput(phone, {
